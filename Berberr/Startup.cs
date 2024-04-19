@@ -24,16 +24,14 @@ namespace Barber
         {
             services.AddCors(options =>
             {
+
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:5173");
-                    });
-
-                options.AddPolicy("AllowAnyOrigin",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin();
+                        builder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
                     });
             });
 
