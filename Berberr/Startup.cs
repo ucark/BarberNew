@@ -24,7 +24,6 @@ namespace Barber
         {
             services.AddCors(options =>
             {
-
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
@@ -37,11 +36,14 @@ namespace Barber
 
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Barber API", Version = "v1" });
             });
+
             services.AddTransient<BarberManager>();
             services.AddTransient<CustomerManager>();
         }
@@ -68,11 +70,19 @@ namespace Barber
 
             try
             {
+                // Veritabanı oluşturma işlemi
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetRequiredService<BarberDbContext>();
+                    dbContext.Database.EnsureCreated(); // Tabloları oluşturur (varsa var olanları değiştirmez)
+                }
+
+                // Veritabanı başlangıç verilerini ekleme
                 barberManager.AddBarber("Example Barber", "Example Workplace", "example@mail.com", "password", "123456789", "City", "District", "Street", "BuildingNo", "DoorNumber", "TaxNo");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Veritabanı seedleme hatası: " + ex.Message);
+                Console.WriteLine("Veritabanı işlemleri sırasında bir hata oluştu: " + ex.Message);
             }
         }
     }

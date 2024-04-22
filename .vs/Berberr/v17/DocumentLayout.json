@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\models\\barbers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\barbers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Startup.cs",
-              "RelativeDocumentMoniker": "Berberr\\Startup.cs",
-              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Startup.cs",
-              "RelativeToolTip": "Berberr\\Startup.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwBwAAAAeAAAA",
+              "Title": "BarberController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\BarberController.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\BarberController.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAwwFAAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T07:46:32.725Z",
+              "WhenOpened": "2024-04-22T07:19:26.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BarberDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\BarberDbContext.cs",
-              "RelativeDocumentMoniker": "Berberr\\BarberDbContext.cs",
-              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\BarberDbContext.cs",
-              "RelativeToolTip": "Berberr\\BarberDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
+              "Title": "Barbers.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\Barbers.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\Barbers.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\Barbers.cs",
+              "RelativeToolTip": "Berberr\\Models\\Barbers.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:11:22.123Z",
+              "WhenOpened": "2024-04-22T06:21:15.49Z",
               "EditorCaption": ""
             }
           ]

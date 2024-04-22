@@ -42,7 +42,16 @@ namespace Barber.Controllers
                 var newBarber = new Barbers
                 {
                     UserName = barberData.UserName,
-                    WorkPlaceName = barberData.WorkPlaceName
+                    WorkPlaceName = barberData.WorkPlaceName,
+                    Mail = barberData.Mail,
+                    Password = barberData.Password,
+                    Phone = barberData.Phone,
+                    City = barberData.City,
+                    District = barberData.District,
+                    Street = barberData.Street,
+                    BuildingNo = barberData.BuildingNo,
+                    DoorNumber = barberData.DoorNumber,
+                    TaxNo = barberData.TaxNo
                 };
 
                 _context.Barbers.Add(newBarber);
@@ -73,6 +82,7 @@ namespace Barber.Controllers
             existingBarber.Street = barberData.Street;
             existingBarber.BuildingNo = barberData.BuildingNo;
             existingBarber.DoorNumber = barberData.DoorNumber;
+            existingBarber.TaxNo = barberData.TaxNo;
 
             try
             {
