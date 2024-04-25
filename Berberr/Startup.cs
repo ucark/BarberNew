@@ -39,7 +39,7 @@ namespace Barber
 
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
@@ -82,7 +82,7 @@ namespace Barber
                 });
             }
             
-            app.UseAuthentication();//Yaptığım tokeni uygulamaya bildirmem gerekiyor.
+            //app.UseAuthentication();//Yaptığım tokeni uygulamaya bildirmem gerekiyor.
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

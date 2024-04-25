@@ -15,8 +15,22 @@ namespace Barber.Controllers
         {
             _context = context;
         }
-
+        
         [HttpGet("get-barber/{id}")]
+        public IActionResult GetBarberId()
+        {
+            try
+            {
+                var barber = _context.Barbers.ToList();
+                return Ok(barber);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+
+        [HttpGet("get-barbers")]
         public IActionResult GetBarbers()
         {
             try
