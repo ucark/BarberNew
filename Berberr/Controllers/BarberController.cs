@@ -16,7 +16,7 @@ namespace Barber.Controllers
             _context = context;
         }
 
-        [HttpGet("get-barber")]
+        [HttpGet("get-barber/{id}")]
         public IActionResult GetBarbers()
         {
             try
