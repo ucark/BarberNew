@@ -67,23 +67,6 @@ namespace Barber
             {
                 endpoints.MapControllers();
             });
-
-            try
-            {
-                // Veritabanı oluşturma işlemi
-                using (var scope = app.ApplicationServices.CreateScope())
-                {
-                    var dbContext = scope.ServiceProvider.GetRequiredService<BarberDbContext>();
-                    dbContext.Database.EnsureCreated(); // Tabloları oluşturur (varsa var olanları değiştirmez)
-                }
-
-                // Veritabanı başlangıç verilerini ekleme
-                barberManager.AddBarber("Example Barber", "Example Workplace", "example@mail.com", "password", "123456789", "City", "District", "Street", "BuildingNo", "DoorNumber", "TaxNo");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Veritabanı işlemleri sırasında bir hata oluştu: " + ex.Message);
-            }
         }
     }
 }

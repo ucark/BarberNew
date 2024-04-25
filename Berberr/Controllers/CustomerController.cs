@@ -37,7 +37,12 @@ namespace Barber
             var newCustomer = new Customers
             {
                 UserName = customerData.UserName,
-                Mail = customerData.Mail
+                Mail = customerData.Mail,
+                Password = customerData.Password,
+                Phone = customerData.Phone,
+                City = customerData.City,
+                District = customerData.District,
+                Street = customerData.Street
             };
             try
             {

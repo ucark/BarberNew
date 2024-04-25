@@ -34,19 +34,27 @@ namespace Barber.Controllers
         [HttpPost("create-employees")]
         public IActionResult CreateEmployee([FromBody] Employees employeeData)
         {
-            if (employeeData == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Geçersiz veri: EmployeeCreate verisi boş.");
+                return BadRequest(ModelState);
             }
+
+            var newEmployees = new Employees
+            {
+                Name = employeeData.Name,
+                LastName = employeeData.LastName,
+                Picture = employeeData.Picture,
+            };
+
             try
             {
-                _context.Employees.Add(employeeData);
+                _context.Employees.Add(newEmployees);
                 _context.SaveChanges();
-                return Ok(employeeData);
+                return Ok(newEmployees);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Hata: " + ex.Message);
+                return StatusCode(500, "Error!: " + ex.Message);
             }
         }
 

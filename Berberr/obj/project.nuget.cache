@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "znkB1j7FPoUN8RnANsoXMM63E8Y1wdLpv3jUrokYCXxG9qYqExRyuD1mB9EPEvjqe1itEgrdwLsd9RGfdbh5pg==",
+  "dgSpecHash": "SWmrEnqIwEH6PWait4TEKwsu2hcmk32Z92OgWOVUHOLqlhRY/djRoJ16CaRxTjGQ0nMAgnCcRJn5cMEd3ReXrQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Barber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ucark\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\ucark\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\ucark\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\ucark\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\ucark\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\ucark\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.5\\microsoft.data.sqlclient.5.1.5.nupkg.sha512",

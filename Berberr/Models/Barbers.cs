@@ -5,7 +5,7 @@ namespace Barber.Models
 {
     [Table("Barbers")]
     public class Barbers
-    {
+    { 
         [Key] public int Id { get; set; }
         public string UserName { get; set; }
         public string WorkPlaceName { get; set; }
