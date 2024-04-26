@@ -1,10 +1,12 @@
 ﻿using Barber.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
 namespace Barber.Controllers
 {
+    //[Authorize(Policy = "RequireBarberLoggedIn")]
     [ApiController]
     [Route("api/[controller]")]
     public class BarberController : ControllerBase
@@ -16,19 +18,6 @@ namespace Barber.Controllers
             _context = context;
         }
         
-        [HttpGet("get-barber/{id}")]
-        public IActionResult GetBarberId()
-        {
-            try
-            {
-                var barber = _context.Barbers.ToList();
-                return Ok(barber);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Hata: " + ex.Message);
-            }
-        }
 
         [HttpGet("get-barbers")]
         public IActionResult GetBarbers()
@@ -37,6 +26,20 @@ namespace Barber.Controllers
             {
                 var barbers = _context.Barbers.ToList();
                 return Ok(barbers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+        [HttpGet("get-barber/{id}")]
+        public IActionResult GetBarberById(int id)
+        {
+            try
+            {
+                var barber = _context.Barbers.Find(id);
+                
+                return Ok(barber);
             }
             catch (Exception ex)
             {

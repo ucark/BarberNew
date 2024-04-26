@@ -39,7 +39,7 @@ namespace Barber
 
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
@@ -70,18 +70,20 @@ namespace Barber
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BarberManager barberManager)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment()) //=>middleware = orta katman
+            //ENVIRONMENT: ortam
+            //IsDevelopment: uygulamanın geliştirme ortamında çalışıp çalışmadığını kontrol eder. bu durumda kodlar çalışır.
             {
                 app.UseDeveloperExceptionPage(); //oluşan hataları daha ayrıntılı görmeyi, bu sayede hata ayıklama işlemlerini kolaylaştırır.
                 app.UseSwagger(); //Swagger, API dökümantasyonunu otomatik oluşturur.Bu sayede API'yi kullanacak diğer geliştiricilerin API'yi nasıl kullanacaklarını anlamalarını kolaylaştırır.
                 app.UseCors("AllowSpecificOrigin"); //bir nevi güvenlik duvarı. Originden(kaynaktan) diğerine HTTP isteklerini sınırlar.
-                
+
                 app.UseSwaggerUI(c =>//Swagger UI(user interface)'nin kullanıcı arayüzünü sağlar. Bu arayüz, belirli bir adres üzerinden API dokümantasyonunu görüntülememizi sağlar. 
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Adı v1"); //Swagger UI'nin /swagger/v1/swagger.json adresine API dokümantasyonunu yüklemesini ve "API Adı v1" başlığı altında göstermesini sağlar.
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Barber v1"); //Swagger UI'nin /swagger/v1/swagger.json adresine API dokümantasyonunu yüklemesini ve "API Adı v1" başlığı altında göstermesini sağlar.
                 });
             }
-            
+
             //app.UseAuthentication();//Yaptığım tokeni uygulamaya bildirmem gerekiyor.
             app.UseRouting();
 

@@ -1,12 +1,14 @@
 ﻿using Barber.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Barber
+namespace Barber.Controllers
 {
+    //[Authorize(Policy = "RequireCustomerLoggedIn")]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
@@ -30,7 +32,19 @@ namespace Barber
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-
+        [HttpGet("get-customer/{id}")]
+        public IActionResult GetCustomerById(int id)
+        {
+            try
+            {
+                var customer = _context.Customers.Find(id);
+                return Ok(customer);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
         [HttpPost("create-customer")]
         public IActionResult CreateCustomer([FromBody] Customers customerData)
         {
