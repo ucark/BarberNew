@@ -10,5 +10,6 @@ namespace Barber.Models
         public string Name { get; set; }
         public string LastName { get; set; }
         public byte[] Picture { get; set; } //veritabanına eklenirken byte'a dönüştürülmesi gerekir
+        public string PictureBase64 { get; set; }
     }
 }
