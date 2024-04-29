@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\models\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\models\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\appsettings.json",
+              "RelativeDocumentMoniker": "Berberr\\appsettings.json",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\appsettings.json",
+              "RelativeToolTip": "Berberr\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-29T13:47:02.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\TokenService.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\TokenService.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\TokenService.cs",
+              "RelativeToolTip": "Berberr\\Models\\TokenService.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAowCcAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T13:43:07.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LogIn.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\LogIn.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\LogIn.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Models\\LogIn.cs",
+              "RelativeToolTip": "Berberr\\Models\\LogIn.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T13:34:09.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T13:32:15.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Startup.cs",
+              "RelativeDocumentMoniker": "Berberr\\Startup.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Startup.cs",
+              "RelativeToolTip": "Berberr\\Startup.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAuwE0AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T11:38:03.701Z",
+              "EditorCaption": ""
             }
           ]
         }

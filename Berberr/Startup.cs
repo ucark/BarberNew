@@ -37,6 +37,8 @@ namespace Barber
             });
 
             // JWT servislerinin ve ayarlarının ekleme
+            var jwtSettings = Configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"];
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -48,7 +50,7 @@ namespace Barber
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = "My Barber App",
                         ValidAudience = "API Servers",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your_secret_key"))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
                     };
                 });
 
@@ -68,7 +70,7 @@ namespace Barber
             services.AddTransient<EmployeeRegister>();
 
             // TokenService'i ekleyin
-            services.AddScoped<TokenService>();
+            services.AddScoped<TokenService>(provider => new TokenService(secretKey));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BarberManager barberManager)

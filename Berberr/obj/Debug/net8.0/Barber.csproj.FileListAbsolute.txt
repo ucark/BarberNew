@@ -243,3 +243,4 @@ C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\obj\Debug\net8.0\Barbe
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\obj\Debug\net8.0\ref\Barber.dll
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\Dapper.dll
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\microsoft.identitymodel.dll

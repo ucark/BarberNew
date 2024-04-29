@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace Barber.Controllers
 {
-    //[Authorize(Policy = "RequireCustomerLoggedIn")]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase

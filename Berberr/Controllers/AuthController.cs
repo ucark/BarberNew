@@ -14,31 +14,21 @@ namespace Barber.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login(string username, string password)
+        // Yeni kullanıcı kaydı için endpoint
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] LogIn model)
         {
-            // Gerçek kullanıcı bilgileri yerine bu örnek bilgileri kullanıyoruz
-            string validUsername = "vaybe23";
-            string validPassword = "123456";
-
-            // Gelen kullanıcı adı ve şifreyi kontrol ediyoruz
-            if (username == validUsername && password == validPassword)
+            // Kullanıcı adı ve şifrenin null olup olmadığını kontrol et
+            if (string.IsNullOrEmpty(model.UserName) || string.IsNullOrEmpty(model.Password))
             {
-                // 256 bit uzunluğunda gizli anahtar
-                var secretKey = "my_super_secret_key_with_256_bits_length_my_super_secret_key_with_256_bits_length";
-                var issuer = "MyBarberApp";
-                var audience = "BarberAPI";
-
-                var token = _tokenService.GenerateJwtToken(secretKey, issuer, audience, 60, username);
-
-                // Token istemciye gönderilir
-                return Ok(new { token });
+                return BadRequest("Kullanıcı adı veya şifre boş olamaz.");
             }
-            else
-            {
-                // Kullanıcı adı veya şifre hatalı
-                return Unauthorized();
-            }
+
+            // Kullanıcı oluşturulduktan sonra JWT tokeni oluştur
+            var token = _tokenService.GenerateJwtToken("My Barber App", "API Servers", 60, model.UserName);
+
+            // Token istemciye gönderilir
+            return Ok(new { token });
         }
     }
 }
