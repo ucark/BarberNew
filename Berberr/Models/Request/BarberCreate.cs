@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Barber.Models
+namespace Barber.Models.Request
 {
-    [Table("Barbers")]
-    public class Barbers
-    { 
-        [Key] public int Id { get; set; }
+    public class BarberCreate
+    {
+        public string Name { get; set; }
+        public string LastName { get; set; }
         public string UserName { get; set; }
         public string WorkPlaceName { get; set; }
         public string Mail { get; set; }

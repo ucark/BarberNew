@@ -39,6 +39,7 @@ namespace Barber
             // JWT servislerinin ve ayarlarının ekleme
             var jwtSettings = Configuration.GetSection("JwtSettings");
             var secretKey = jwtSettings["SecretKey"];
+            services.AddScoped<TokenService>(provider => new TokenService(secretKey));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -54,7 +55,18 @@ namespace Barber
                     };
                 });
 
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireBarberLoggedIn", policy =>
+                {
+                    policy.RequireClaim("User Role", "Barber");
+                });
+
+                options.AddPolicy("RequireCustomerLoggedIn", policy =>
+                {
+                    policy.RequireClaim("User Role", "Customer");
+                });
+            });
 
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -68,9 +80,6 @@ namespace Barber
             services.AddTransient<BarberManager>();
             services.AddTransient<CustomerManager>();
             services.AddTransient<EmployeeRegister>();
-
-            // TokenService'i ekleyin
-            services.AddScoped<TokenService>(provider => new TokenService(secretKey));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BarberManager barberManager)
@@ -85,12 +94,17 @@ namespace Barber
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Barber v1");
                 });
             }
+            else
+            {
+                app.UseExceptionHandler("/error"); // Hata yönetimi middleware'i
+                app.UseHsts(); // HTTP Strict Transport Security
+                app.UseHttpsRedirection(); // HTTPS'e yönlendirme
+                app.UseCors("AllowSpecificOrigin"); // Prodüksiyon ortamında CORS tanımlaması
+            }
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,4 +1,4 @@
-﻿using Barber.Models;
+﻿using Barber.Models.DTO;
 
 namespace Barber.BarberDB
 {
@@ -11,10 +11,16 @@ namespace Barber.BarberDB
             _context = context;
         }
 
-        public void AddCustomer(string userName, string mail, string password, string phone, string city, string district, string street)
+        public void AddCustomer(string name, string lastName, string age, bool gender, 
+            string userName, string mail, string password, 
+            string phone, string city, string district, string street)
         {
             var newCustomer = new Customers
             {
+                Name = name,
+                LastName = lastName,
+                Age = age,
+                Gender = gender,
                 UserName = userName,
                 Mail = mail,
                 Password = password,

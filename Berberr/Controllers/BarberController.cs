@@ -1,4 +1,4 @@
-﻿using Barber.Models;
+﻿using Barber.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace Barber.Controllers
 {
-    [Authorize(Policy = "RequireBarberLoggedIn")]
-    [ApiController]
+    //[Authorize(Policy = "RequireBarberLoggedIn")]
     [Route("api/[controller]")]
+    [ApiController]
     public class BarberController : ControllerBase
     {
         private readonly BarberDbContext _context;
@@ -17,7 +17,6 @@ namespace Barber.Controllers
         {
             _context = context;
         }
-        
 
         [HttpGet("get-barbers")]
         public IActionResult GetBarbers()
@@ -32,6 +31,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+
         [HttpGet("get-barber/{id}")]
         public IActionResult GetBarberById(int id)
         {
@@ -58,6 +58,8 @@ namespace Barber.Controllers
             {
                 var newBarber = new Barbers
                 {
+                    Name = barberData.Name,
+                    LastName = barberData.LastName,
                     UserName = barberData.UserName,
                     WorkPlaceName = barberData.WorkPlaceName,
                     Mail = barberData.Mail,
@@ -89,6 +91,8 @@ namespace Barber.Controllers
             {
                 return NotFound("Belirtilen kimlik numarasına sahip bir berber bulunamadı.");
             }
+            existingBarber.Name = barberData.Name;
+            existingBarber.LastName = barberData.LastName;
             existingBarber.UserName = barberData.UserName;
             existingBarber.WorkPlaceName = barberData.WorkPlaceName;
             existingBarber.Mail = barberData.Mail;

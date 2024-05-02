@@ -1,4 +1,4 @@
-﻿using Barber.Models;
+﻿using Barber.Models.DTO;
 
 namespace Barber.BarberDB
 {
@@ -17,7 +17,7 @@ namespace Barber.BarberDB
             {
                 Name = name,
                 LastName = lastName,
-                Picture = picture
+                Picture = picture                
             };
             _context.Employees.Add(newEmployee);
             _context.SaveChanges();

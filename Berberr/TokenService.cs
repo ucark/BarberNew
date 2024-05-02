@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -8,15 +9,18 @@ public class TokenService
 {
     private readonly string _secretKey;
 
+    // Yapılandırıcı tanımlayın
     public TokenService(string secretKey)
     {
+        // Gelen secretKey değerini _secretKey değişkenine atayın
         _secretKey = secretKey;
     }
 
-    public string GenerateJwtToken(string issuer, string audience, int expireMinutes, string userId)
+    // Token oluşturma metodu
+    public string GenerateJwtToken(string issuer, string audience, int expireMinutes, string userId, string userRole)
     {
         // Anahtar boyutunu kontrol et
-        if (string.IsNullOrEmpty(_secretKey) || Encoding.UTF8.GetBytes(_secretKey).Length < 16)
+        if (string.IsNullOrEmpty(_secretKey) || _secretKey.Length < 16)
         {
             throw new ArgumentOutOfRangeException(nameof(_secretKey), "The encryption algorithm 'HS256' requires a key size of at least '128' bits.");
         }
@@ -27,15 +31,21 @@ public class TokenService
         // Kimlik doğrulama bilgilerini oluştur
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+        // Kullanıcı kimlik bilgilerini içeren JWT claim'leri oluştur
+        var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.NameIdentifier, userId),
+        new Claim("UserRole", userRole) // Kullanıcı rolü ekle
+    };
+
         // JWT token oluştur
         var token = new JwtSecurityToken(
             issuer: issuer,
             audience: audience,
-            claims: new[] { new Claim(ClaimTypes.NameIdentifier, userId) },
+            claims: claims,
             expires: DateTime.UtcNow.AddMinutes(expireMinutes),
             signingCredentials: credentials
         );
-
         // JWT token'ı string olarak döndür
         return new JwtSecurityTokenHandler().WriteToken(token);
     }

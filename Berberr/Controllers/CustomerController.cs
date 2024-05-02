@@ -1,4 +1,4 @@
-﻿using Barber.Models;
+﻿using Barber.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,8 +8,9 @@ using System.Linq;
 
 namespace Barber.Controllers
 {
-    [ApiController]
+    //[Authorize(Policy = "RequireCustomerLoggedIn")]
     [Route("api/[controller]")]
+    [ApiController]
     public class CustomerController : ControllerBase
     {
         private readonly BarberDbContext _context;
@@ -49,6 +50,10 @@ namespace Barber.Controllers
         {
             var newCustomer = new Customers
             {
+                Name = customerData.Name,
+                LastName = customerData.LastName,
+                Age = customerData.Age,
+                Gender = customerData.Gender,
                 UserName = customerData.UserName,
                 Mail = customerData.Mail,
                 Password = customerData.Password,
@@ -59,15 +64,16 @@ namespace Barber.Controllers
             };
             try
             {
-                _context.Customers.Add(customerData);
+                _context.Customers.Add(newCustomer); // newCustomer kullanıldı
                 _context.SaveChanges();
-                return Ok(customerData);
+                return Ok(newCustomer); // customerData yerine newCustomer döndürüldü
             }
             catch (Exception ex)
             {
                 return StatusCode(500, "Error!: " + ex.Message);
             }
         }
+
 
         [HttpPut("update-customer/{id}")]
         public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
@@ -77,6 +83,10 @@ namespace Barber.Controllers
             {
                 return NotFound("Belirtilen kimlik numarasına sahip bir müşteri bulunamadı.");
             }
+            existingCustomer.Name = customerData.Name;
+            existingCustomer.LastName = customerData.LastName;
+            existingCustomer.Age = customerData.Age;
+            existingCustomer.Gender = customerData.Gender;
             existingCustomer.UserName = customerData.UserName;
             existingCustomer.Mail = customerData.Mail;
             existingCustomer.Password = customerData.Password;
