@@ -1,21 +1,27 @@
 ﻿using Barber.Models.DTO;
+using Barber.Models.Request;
+using Barber.Models.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 
 namespace Barber.Controllers
 {
-    //[Authorize(Policy = "RequireBarberLoggedIn")]
+
     [Route("api/[controller]")]
     [ApiController]
     public class BarberController : ControllerBase
     {
         private readonly BarberDbContext _context;
-
-        public BarberController(BarberDbContext context)
+        private readonly TokenService _tokenService;
+        private readonly JwtSettings _jwtSettings;
+        public BarberController(BarberDbContext context, TokenService tokenService, IOptions<JwtSettings> jwtSettings)
         {
             _context = context;
+            _tokenService = tokenService;
+            _jwtSettings = jwtSettings.Value;
         }
 
         [HttpGet("get-barbers")]
@@ -82,7 +88,49 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+        
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
+        {
+            try
+            {
+                var user = _context.Barbers.FirstOrDefault(u => u.UserName == loginData.Username
+                && u.Password == loginData.Password);
+                if (user == null)
+                {
+                    return BadRequest("Kullanıcı adı veya şifresi hatalı.");
+                }
+                //kullanıcı doğrulandıysa JWT oluştur bakam.
+                var token = _tokenService.GenerateJwtToken(
+                    _jwtSettings.Issuer,
+                    _jwtSettings.Audience,
+                    _jwtSettings.ExpireMinutes,
+                    user.Id.ToString(), //kullanıcı kimlik bilgisi
+                    "Barber" //Kullanıcı rolü
+                    );
+                return Ok(new { Token = token });
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, "Sunucu hatası: " + ex.Message);
+            }
+        }
 
+        [HttpPost("token")]
+        public IActionResult GenerateJwtToken([FromBody] TokenRequest tokenRequest)
+        {
+            try
+            {
+                //token oluşturma işlemi
+                // dönüş değeri
+                return Ok("Token Oluşturuldu.");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, "Sunucu hatası: " + ex.Message);
+            }
+        }
+        
         [HttpPut("update-barber/{id}")]
         public IActionResult UpdateBarber(int id, [FromBody] Barbers barberData)
         {

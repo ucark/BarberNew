@@ -10,6 +10,7 @@ namespace Barber.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class EmployeeController : ControllerBase
     {
         private readonly BarberDbContext _context;
@@ -33,7 +34,23 @@ namespace Barber.Controllers
             }
         }
 
+        [HttpGet("get-employees/{id}")]
+
+        public IActionResult GetBarberById(int id)
+        {
+            try
+            {
+                var employees = _context.Employees.Find(id);
+                return Ok(employees);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+
         [HttpPost("create-employees")]
+
         public IActionResult CreateEmployee([FromForm] EmployeeCreate employeeData)
         {
             // Veri doğrulaması
@@ -75,6 +92,7 @@ namespace Barber.Controllers
         }
 
         [HttpPut("update-employees/{id}")]
+
         public IActionResult UpdateEmployee(int id, [FromBody] Employees employeeData)
         {
             var existingEmployee = _context.Employees.Find(id);
@@ -98,6 +116,7 @@ namespace Barber.Controllers
         }
 
         [HttpDelete("delete-employees/{id}")]
+
         public IActionResult DeleteEmployee(int id)
         {
             var existingEmployee = _context.Employees.Find(id);

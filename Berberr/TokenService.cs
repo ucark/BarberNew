@@ -35,7 +35,9 @@ public class TokenService
         var claims = new List<Claim>
     {
         new Claim(ClaimTypes.NameIdentifier, userId),
-        new Claim("UserRole", userRole) // Kullanıcı rolü ekle
+        new Claim("UserRole", userRole), // Kullanıcı rolü ekle
+        new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
+        new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
     };
 
         // JWT token oluştur

@@ -1,5 +1,7 @@
 ﻿using Barber.BarberDB;
 using Barber.Models;
+using Barber.Models.Request;
+using Barber.Models.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +42,7 @@ namespace Barber
             var jwtSettings = Configuration.GetSection("JwtSettings");
             var secretKey = jwtSettings["SecretKey"];
             services.AddScoped<TokenService>(provider => new TokenService(secretKey));
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -55,18 +58,6 @@ namespace Barber
                     };
                 });
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("RequireBarberLoggedIn", policy =>
-                {
-                    policy.RequireClaim("User Role", "Barber");
-                });
-
-                options.AddPolicy("RequireCustomerLoggedIn", policy =>
-                {
-                    policy.RequireClaim("User Role", "Customer");
-                });
-            });
 
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -80,6 +71,7 @@ namespace Barber
             services.AddTransient<BarberManager>();
             services.AddTransient<CustomerManager>();
             services.AddTransient<EmployeeRegister>();
+            services.AddTransient<LoginRequest>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BarberManager barberManager)

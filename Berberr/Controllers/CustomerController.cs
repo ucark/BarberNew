@@ -1,22 +1,30 @@
 ﻿using Barber.Models.DTO;
-using Microsoft.AspNetCore.Authorization;
+using Barber.Models.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
+using Barber.Models.Request;
 using System.Linq;
 
 namespace Barber.Controllers
 {
-    //[Authorize(Policy = "RequireCustomerLoggedIn")]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
         private readonly BarberDbContext _context;
-        public CustomerController(BarberDbContext context)
+        private readonly TokenService _tokenService;
+        private readonly JwtSettings _jwtSettings;
+
+        public CustomerController(BarberDbContext context, TokenService tokenService, IOptions<JwtSettings> jwtSettings)
         {
             _context = context;
+            _tokenService = tokenService;
+            _jwtSettings = jwtSettings.Value;
         }
 
         [HttpGet("get-customers")]
@@ -32,6 +40,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+
         [HttpGet("get-customer/{id}")]
         public IActionResult GetCustomerById(int id)
         {
@@ -45,6 +54,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+
         [HttpPost("create-customer")]
         public IActionResult CreateCustomer([FromBody] Customers customerData)
         {
@@ -64,9 +74,9 @@ namespace Barber.Controllers
             };
             try
             {
-                _context.Customers.Add(newCustomer); // newCustomer kullanıldı
+                _context.Customers.Add(newCustomer);
                 _context.SaveChanges();
-                return Ok(newCustomer); // customerData yerine newCustomer döndürüldü
+                return Ok(newCustomer);
             }
             catch (Exception ex)
             {
@@ -74,6 +84,48 @@ namespace Barber.Controllers
             }
         }
 
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
+        {
+            try
+            {
+                var user = _context.Customers.FirstOrDefault(u => u.UserName == loginData.Username && u.Password == loginData.Password);
+
+                if (user == null)
+                {
+                    return BadRequest("Kullanıcı adı veya şifresi hatalı.");
+                }
+                // Kullanıcı doğrulandıysa JWT token oluştur.
+                var token = _tokenService.GenerateJwtToken(
+                    _jwtSettings.Issuer,
+                    _jwtSettings.Audience,
+                    _jwtSettings.ExpireMinutes,
+                    user.Id.ToString(), // Kullanıcı kimlik bilgisi
+                    "Customer" // Kullanıcı rolü
+                );
+
+                return Ok(new { Token = token });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Sunucu hatası: " + ex.Message);
+            }
+        }
+
+        [HttpPost("token")]
+        public IActionResult GenerateJwtToken([FromBody] TokenRequest tokenRequest)
+        {
+            try
+            {
+                // Token oluşturma işlemleri...
+                // Dönüş değeri
+                return Ok("Token oluşturuldu.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Sunucu hatası: " + ex.Message);
+            }
+        }
 
         [HttpPut("update-customer/{id}")]
         public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
