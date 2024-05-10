@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "+XD6GfiX6wCnO6/0VZXqIO888O1ZhRaoZUI5FFqeXF4=",
+  "Hash": "Fu1xFFcpq+PvGjOJ+dOf7bd6bnBv3FPer2p1qpvqwYo=",
   "Source": "Barber",
   "BasePath": "_content/Barber",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Barber\\wwwroot",
+      "Source": "Barber",
+      "ContentRoot": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\wwwroot\\",
+      "BasePath": "_content/Barber",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

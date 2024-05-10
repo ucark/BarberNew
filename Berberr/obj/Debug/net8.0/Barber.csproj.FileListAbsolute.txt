@@ -245,3 +245,4 @@ C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\Dappe
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\microsoft.identitymodel.dll
 C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\jose-jwt.dll
+C:\Users\ucark\OneDrive\Belgeler\GitHub\BarberNew\Berberr\bin\Debug\net8.0\Barber.staticwebassets.runtime.json

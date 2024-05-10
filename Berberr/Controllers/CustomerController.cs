@@ -104,7 +104,7 @@ namespace Barber.Controllers
                     "Customer" // Kullanıcı rolü
                 );
 
-                return Ok(new { Token = token });
+                return Ok(new { Token = token, User = user.Id, user.UserName, user.City, user.District, user.Street });
             }
             catch (Exception ex)
             {

@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\barbernew\\berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,9 +36,35 @@
               "RelativeDocumentMoniker": "Berberr\\Controllers\\CustomerController.cs",
               "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\CustomerController.cs",
               "RelativeToolTip": "Berberr\\Controllers\\CustomerController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAABSAAAA",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAIwGwAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T08:56:29.338Z",
+              "WhenOpened": "2024-05-10T09:11:39.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BarberController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\BarberController.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\BarberController.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAgwHIAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T09:06:59.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAIwFgAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T14:53:59.627Z",
               "EditorCaption": ""
             }
           ]
