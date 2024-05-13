@@ -44,7 +44,7 @@ namespace Barber.Controllers
             try
             {
                 var barber = _context.Barbers.Find(id);
-                
+
                 return Ok(barber);
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-        
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
         {
@@ -110,7 +110,7 @@ namespace Barber.Controllers
                     );
                 return Ok(new { Token = token, User = user.Id, user.UserName, user.City, user.District, user.Street });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
@@ -125,12 +125,63 @@ namespace Barber.Controllers
                 // dönüş değeri
                 return Ok("Token Oluşturuldu.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-        
+
+        [HttpPost("create-barbers")]
+        public IActionResult CreateBarber([FromForm] BarberCreate barberData)
+        {
+            if (barberData == null)
+                return BadRequest("Geçersiz veri: Berber verisi boş.");
+
+            if (barberData.BarberFile == null || barberData.BarberFile.Length == 0)
+                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
+
+            var newFileName = Guid.NewGuid().ToString() + ".jpg";
+
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "BarberPictures");
+            var filePath = Path.Combine(folderPath, newFileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                barberData.BarberFile.CopyTo(stream);
+            }
+            var fileUrl = Path.Combine("/BarberPictures", newFileName);
+
+            var newBarber = new Barbers
+            {
+                Name = barberData.Name,
+                LastName = barberData.LastName,
+                UserName = barberData.UserName,
+                WorkPlaceName = barberData.WorkPlaceName,
+                Mail = barberData.Mail,
+                Password = barberData.Password,
+                Phone = barberData.Phone,
+                City = barberData.City,
+                District = barberData.District,
+                Street = barberData.Street,
+                BuildingNo = barberData.BuildingNo,
+                DoorNumber = barberData.DoorNumber,
+                TaxNo = barberData.TaxNo,
+                BarberUrl = fileUrl
+            };
+
+            try
+            {
+                _context.Barbers.Add(newBarber);
+                _context.SaveChanges();
+                return Ok(newBarber);
+            }
+            catch (Exception ex)
+            {
+                System.IO.File.Delete(filePath);
+                return StatusCode(500, "Hata: " + ex.Message + "Inner Exception: " + ex.InnerException?.Message);
+            }
+            
+        }
+
         [HttpPut("update-barber/{id}")]
         public IActionResult UpdateBarber(int id, [FromBody] Barbers barberData)
         {

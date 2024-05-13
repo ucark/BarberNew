@@ -58,7 +58,7 @@ namespace Barber.Controllers
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
             // Resim yolu doğrulama
-            if (employeeData.PictureFile == null || employeeData.PictureFile.Length == 0)
+            if (employeeData.EmployeeFile == null || employeeData.EmployeeFile.Length == 0)
                 return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
 
             // Yeni dosya adı oluşturma
@@ -71,7 +71,7 @@ namespace Barber.Controllers
             // Dosyayı sunucuya kaydetme
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                employeeData.PictureFile.CopyTo(stream);
+                employeeData.EmployeeFile.CopyTo(stream);
             }
 
             // Resmin URL'sini oluşturma
@@ -83,7 +83,7 @@ namespace Barber.Controllers
                 BarberID = employeeData.BarberID,
                 Name = employeeData.Name,
                 LastName = employeeData.LastName,
-                PictureUrl = fileUrl // Resmin URL'sini kaydetme
+                EmployeeUrl = fileUrl // Resmin URL'sini kaydetme
             };
 
             try
@@ -109,7 +109,7 @@ namespace Barber.Controllers
 
             existingEmployee.Name = employeeData.Name;
             existingEmployee.LastName = employeeData.LastName;
-            existingEmployee.PictureUrl = employeeData.PictureUrl;
+            existingEmployee.EmployeeUrl = employeeData.EmployeeUrl;
 
             try
             {

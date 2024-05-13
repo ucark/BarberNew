@@ -54,7 +54,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-
+        
         [HttpPost("create-customer")]
         public IActionResult CreateCustomer([FromBody] Customers customerData)
         {
@@ -83,7 +83,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Error!: " + ex.Message);
             }
         }
-
+        
         [HttpPost("login")]
         public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
         {
@@ -127,6 +127,64 @@ namespace Barber.Controllers
             }
         }
 
+        [HttpPost("create-customers")]
+        public IActionResult CreateCustomer([FromForm] CustomerCreate customerData)
+        {
+            // Veri doğrulaması
+            if (customerData == null)
+                return BadRequest("Geçersiz veri: Çalışan verisi boş.");
+
+            // Resim yolu doğrulama
+            if (customerData.CustomerFile == null || customerData.CustomerFile.Length == 0)
+                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
+
+            // Yeni dosya adı oluşturma
+            var newFileName = Guid.NewGuid().ToString() + ".jpg";
+
+            // Dosya yolu
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomerPictures");
+            var filePath = Path.Combine(folderPath, newFileName);
+
+            // Dosyayı sunucuya kaydetme
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                customerData.CustomerFile.CopyTo(stream);
+            }
+
+            // Resmin URL'sini oluşturma
+            var fileUrl = Path.Combine("/CustomerPictures", newFileName);
+
+            // Yeni çalışan oluşturma
+            var newCustomer = new Customers
+            {
+                Name = customerData.Name,
+                LastName = customerData.LastName,
+                Age = customerData.Age,
+                Gender = customerData.Gender,
+                UserName = customerData.UserName,
+                Mail = customerData.Mail,
+                Password = customerData.Password,
+                Phone = customerData.Phone,
+                City = customerData.City,
+                District = customerData.District,
+                Street = customerData.Street, 
+                CustomerUrl = fileUrl
+            };
+
+            try
+            {
+                _context.Customers.Add(newCustomer);
+                _context.SaveChanges();
+                return Ok(newCustomer);
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda dosyayı silme
+                System.IO.File.Delete(filePath);
+                return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
+            }
+        }
+
         [HttpPut("update-customer/{id}")]
         public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
         {
@@ -146,6 +204,7 @@ namespace Barber.Controllers
             existingCustomer.City = customerData.City;
             existingCustomer.District = customerData.District;
             existingCustomer.Street = customerData.Street;
+            existingCustomer.CustomerUrl = customerData.CustomerUrl;
 
             try
             {

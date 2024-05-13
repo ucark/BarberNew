@@ -11,13 +11,13 @@ namespace Barber.BarberDB
             _context = context;
         }
 
-        public void AddEmployee(string name, string lastName, string pictureUrl)
+        public void AddEmployee(string name, string lastName, string employeeUrl)
         {
             var newEmployee = new Employees
             {
                 Name = name,
                 LastName = lastName,
-                PictureUrl = pictureUrl
+                EmployeeUrl = employeeUrl
             };
             _context.Employees.Add(newEmployee);
             _context.SaveChanges();

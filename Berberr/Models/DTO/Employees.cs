@@ -10,7 +10,7 @@ namespace Barber.Models.DTO
         public int BarberID { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
-        public string PictureUrl { get; set; } //veritabanına eklenirken byte'a dönüştürülür
+        public string EmployeeUrl { get; set; }
 
     }
 }
