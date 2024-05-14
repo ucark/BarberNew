@@ -76,7 +76,8 @@ namespace Barber.Controllers
                     Street = barberData.Street,
                     BuildingNo = barberData.BuildingNo,
                     DoorNumber = barberData.DoorNumber,
-                    TaxNo = barberData.TaxNo
+                    TaxNo = barberData.TaxNo,
+                    BarberUrl = barberData.BarberUrl
                 };
 
                 _context.Barbers.Add(newBarber);
@@ -131,8 +132,8 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpPost("create-barbers")]
-        public IActionResult CreateBarber([FromForm] BarberCreate barberData)
+        [HttpPut("update-barber")]
+        public IActionResult CreateBarber([FromForm] BarberUpdate barberData)
         {
             if (barberData == null)
                 return BadRequest("Geçersiz veri: Berber verisi boş.");
@@ -152,19 +153,6 @@ namespace Barber.Controllers
 
             var newBarber = new Barbers
             {
-                Name = barberData.Name,
-                LastName = barberData.LastName,
-                UserName = barberData.UserName,
-                WorkPlaceName = barberData.WorkPlaceName,
-                Mail = barberData.Mail,
-                Password = barberData.Password,
-                Phone = barberData.Phone,
-                City = barberData.City,
-                District = barberData.District,
-                Street = barberData.Street,
-                BuildingNo = barberData.BuildingNo,
-                DoorNumber = barberData.DoorNumber,
-                TaxNo = barberData.TaxNo,
                 BarberUrl = fileUrl
             };
 
@@ -203,6 +191,7 @@ namespace Barber.Controllers
             existingBarber.BuildingNo = barberData.BuildingNo;
             existingBarber.DoorNumber = barberData.DoorNumber;
             existingBarber.TaxNo = barberData.TaxNo;
+            existingBarber.BarberUrl = barberData.BarberUrl;
 
             try
             {

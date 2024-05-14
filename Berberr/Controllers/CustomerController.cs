@@ -1,14 +1,16 @@
 ﻿using Barber.Models.DTO;
+using Barber.Models.Request;
+using Barber.Models.Response;
 using Barber.Models.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Security.Claims;
-using Barber.Models.Request;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 
 namespace Barber.Controllers
 {
@@ -54,7 +56,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-        
+
         [HttpPost("create-customer")]
         public IActionResult CreateCustomer([FromBody] Customers customerData)
         {
@@ -83,7 +85,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Error!: " + ex.Message);
             }
         }
-        
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
         {
@@ -95,31 +97,27 @@ namespace Barber.Controllers
                 {
                     return BadRequest("Kullanıcı adı veya şifresi hatalı.");
                 }
-                // Kullanıcı doğrulandıysa JWT token oluştur.
+
                 var token = _tokenService.GenerateJwtToken(
                     _jwtSettings.Issuer,
                     _jwtSettings.Audience,
                     _jwtSettings.ExpireMinutes,
-                    user.Id.ToString(), // Kullanıcı kimlik bilgisi
-                    "Customer" // Kullanıcı rolü
+                    user.Id.ToString(),
+                    "Customer"
                 );
 
-                return Ok(new { Token = token, User = user.Id, user.UserName, user.City, user.District, user.Street });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Sunucu hatası: " + ex.Message);
-            }
-        }
+                user.RefreshToken = token;
 
-        [HttpPost("token")]
-        public IActionResult GenerateJwtToken([FromBody] TokenRequest tokenRequest)
-        {
-            try
-            {
-                // Token oluşturma işlemleri...
-                // Dönüş değeri
-                return Ok("Token oluşturuldu.");
+                CustomerResponse customerResponse = new CustomerResponse()
+                {
+                    Token = token,
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    City = user.City,
+                    District = user.District,
+                    Street = user.Street
+                };
+                return Ok(customerResponse);
             }
             catch (Exception ex)
             {
@@ -130,31 +128,24 @@ namespace Barber.Controllers
         [HttpPost("create-customers")]
         public IActionResult CreateCustomer([FromForm] CustomerCreate customerData)
         {
-            // Veri doğrulaması
             if (customerData == null)
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
-            // Resim yolu doğrulama
             if (customerData.CustomerFile == null || customerData.CustomerFile.Length == 0)
                 return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
 
-            // Yeni dosya adı oluşturma
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
-            // Dosya yolu
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomerPictures");
             var filePath = Path.Combine(folderPath, newFileName);
 
-            // Dosyayı sunucuya kaydetme
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 customerData.CustomerFile.CopyTo(stream);
             }
 
-            // Resmin URL'sini oluşturma
             var fileUrl = Path.Combine("/CustomerPictures", newFileName);
 
-            // Yeni çalışan oluşturma
             var newCustomer = new Customers
             {
                 Name = customerData.Name,
@@ -167,7 +158,7 @@ namespace Barber.Controllers
                 Phone = customerData.Phone,
                 City = customerData.City,
                 District = customerData.District,
-                Street = customerData.Street, 
+                Street = customerData.Street,
                 CustomerUrl = fileUrl
             };
 
@@ -179,7 +170,6 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
-                // Hata durumunda dosyayı silme
                 System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
             }
