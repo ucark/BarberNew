@@ -7,14 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pictures\**" />
-    <Compile Remove="wwwroot\EmployeePicture\**" />
-    <Content Remove="Pictures\**" />
-    <Content Remove="wwwroot\EmployeePicture\**" />
-    <EmbeddedResource Remove="Pictures\**" />
-    <EmbeddedResource Remove="wwwroot\EmployeePicture\**" />
-    <None Remove="Pictures\**" />
-    <None Remove="wwwroot\EmployeePicture\**" />
+    <Compile Remove="Controllers\Pictures\**" />
+    <Content Remove="Controllers\Pictures\**" />
+    <EmbeddedResource Remove="Controllers\Pictures\**" />
+    <None Remove="Controllers\Pictures\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EmployeePictures\" />
-    <Folder Include="BarberPictures\" />
-    <Folder Include="CustomerPictures\" />
+    <Folder Include="Pictures\BarberPictures\" />
+    <Folder Include="Pictures\CustomerPictures\" />
+    <Folder Include="Pictures\EmployeePictures\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

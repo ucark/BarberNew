@@ -1,6 +1,7 @@
 ﻿using Barber.Models.DTO;
 using Barber.Models.Request;
 using Barber.Models.Settings;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,7 +11,7 @@ using System.Linq;
 namespace Barber.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("API/[controller]")]
     [ApiController]
     public class BarberController : ControllerBase
     {
@@ -24,7 +25,7 @@ namespace Barber.Controllers
             _jwtSettings = jwtSettings.Value;
         }
 
-        [HttpGet("get-barbers")]
+        [HttpGet("Get-Barbers")]
         public IActionResult GetBarbers()
         {
             try
@@ -38,7 +39,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpGet("get-barber/{id}")]
+        [HttpGet("Get-Barber/{id}")]
         public IActionResult GetBarberById(int id)
         {
             try
@@ -53,44 +54,8 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpPost("create-barber")]
-        public IActionResult CreateBarber([FromBody] Barbers barberData)
-        {
-            if (barberData == null)
-            {
-                return BadRequest("Geçersiz veri: BarberCreate verisi boş.");
-            }
-            try
-            {
-                var newBarber = new Barbers
-                {
-                    Name = barberData.Name,
-                    LastName = barberData.LastName,
-                    UserName = barberData.UserName,
-                    WorkPlaceName = barberData.WorkPlaceName,
-                    Mail = barberData.Mail,
-                    Password = barberData.Password,
-                    Phone = barberData.Phone,
-                    City = barberData.City,
-                    District = barberData.District,
-                    Street = barberData.Street,
-                    BuildingNo = barberData.BuildingNo,
-                    DoorNumber = barberData.DoorNumber,
-                    TaxNo = barberData.TaxNo
-                };
-
-                _context.Barbers.Add(newBarber);
-                _context.SaveChanges();
-                return Ok(newBarber);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Hata: " + ex.Message);
-            }
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
+        [HttpPost("Login")]
+        public IActionResult Login([FromForm] Barber.Models.Request.LoginRequest loginData)
         {
             try
             {
@@ -108,16 +73,24 @@ namespace Barber.Controllers
                     user.Id.ToString(), //kullanıcı kimlik bilgisi
                     "Barber" //Kullanıcı rolü
                     );
-                return Ok(new { Token = token, User = user.Id, user.UserName, user.City, user.District, user.Street });
+                return Ok(new 
+                {
+                    Token = token,
+                    User = user.Id,
+                    user.UserName,
+                    user.City,
+                    user.District,
+                    user.Street
+                });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-
+        /*
         [HttpPost("token")]
-        public IActionResult GenerateJwtToken([FromBody] TokenRequest tokenRequest)
+        public IActionResult GenerateJwtToken([FromForm] TokenRequest tokenRequest)
         {
             try
             {
@@ -130,8 +103,8 @@ namespace Barber.Controllers
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-
-        [HttpPost("create-barbers")]
+        */
+        [HttpPost("Create-Barbers")]
         public IActionResult CreateBarber([FromForm] BarberCreate barberData)
         {
             if (barberData == null)
@@ -142,13 +115,13 @@ namespace Barber.Controllers
 
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "BarberPictures");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "BarberPictures");
             var filePath = Path.Combine(folderPath, newFileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 barberData.BarberFile.CopyTo(stream);
             }
-            var fileUrl = Path.Combine("/BarberPictures", newFileName);
+            var fileUrl = Path.Combine("\\Pictures\\BarberPictures", newFileName);
 
             var newBarber = new Barbers
             {
@@ -177,13 +150,13 @@ namespace Barber.Controllers
             catch (Exception ex)
             {
                 System.IO.File.Delete(filePath);
-                return StatusCode(500, "Hata: " + ex.Message + "Inner Exception: " + ex.InnerException?.Message);
+                return StatusCode(500, "Hata: " + ex.Message + "Inner Exception: ");
             }
             
         }
 
-        [HttpPut("update-barber/{id}")]
-        public IActionResult UpdateBarber(int id, [FromBody] Barbers barberData)
+        [HttpPut("Update-Barber/{id}")]
+        public IActionResult UpdateBarber(int id, [FromForm] Barbers barberData)
         {
             var existingBarber = _context.Barbers.Find(id);
             if (existingBarber == null)
@@ -215,7 +188,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpDelete("delete-barber/{id}")]
+        [HttpDelete("Delete-Barber/{id}")]
         public IActionResult DeleteBarber(int id)
         {
             var existingBarber = _context.Barbers.Find(id);

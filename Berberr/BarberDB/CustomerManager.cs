@@ -1,4 +1,5 @@
 ﻿using Barber.Models.DTO;
+using Barber.Models;
 
 namespace Barber.BarberDB
 {

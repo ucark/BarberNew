@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Fu1xFFcpq+PvGjOJ+dOf7bd6bnBv3FPer2p1qpvqwYo=",
+  "Hash": "0XjVmMQZPw7oOZK2/A+o1kKGWw4U8qKAP96CniMp0Is=",
   "Source": "Barber",
   "BasePath": "_content/Barber",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Barber\\wwwroot",
       "Source": "Barber",
-      "ContentRoot": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ucark\\source\\repos\\BarberNew\\Berberr\\wwwroot\\",
       "BasePath": "_content/Barber",
       "Pattern": "**"
     }

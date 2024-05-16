@@ -17,17 +17,19 @@ namespace Barber
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration) //IConfiguration arabirimi, uygulamanın yapılandırma bilgilerine erişim sağlar.
         {
+            //configuration özelliği, yapılandırma bilgisine erişim sağlar ve uygulamanın başlangıcında veya çalışma zamanında bu bilgilere erişmek ve onları kullanmak için kullanılır. 
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
             {
+                //Cross-Origin Resource Sharing - Çapraz Kaynaklı Kaynak Paylaşımı
+                //CORS, tarayıcı tabanlı uygulamaların kaynaklara (örneğin API'ler) farklı bir kök (origin) veya etki alanından erişimine izin veren bir web tarayıcısı mekanizmasıdır. 
                 options.AddPolicy("AllowSpecificOrigin",
                     builder =>
                     {
@@ -58,7 +60,6 @@ namespace Barber
                     };
                 });
 
-
             services.AddDbContext<BarberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -70,8 +71,9 @@ namespace Barber
 
             services.AddTransient<BarberManager>();
             services.AddTransient<CustomerManager>();
-            services.AddTransient<EmployeeRegister>();
+            services.AddTransient<EmployeeManager>();
             services.AddTransient<LoginRequest>();
+            //services.AddTransient<>
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BarberManager barberManager)

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Barber.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("API/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Barber.Controllers
             _context = context;
         }
 
-        [HttpGet("get-employees")]
+        [HttpGet("Get-Employees")]
         public IActionResult GetEmployees()
         {
             try
@@ -33,7 +33,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpGet("get-employees/{id}")]
+        [HttpGet("Get-Employees/{id}")]
         public IActionResult GetEmployeeById(int id)
         {
             try
@@ -50,7 +50,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpPost("create-employees")]
+        [HttpPost("Create-Employees")]
         public IActionResult CreateEmployee([FromForm] EmployeeCreate employeeData)
         {
             // Veri doğrulaması
@@ -65,7 +65,7 @@ namespace Barber.Controllers
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
             // Dosya yolu
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "EmployeePictures");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "EmployeePictures");
             var filePath = Path.Combine(folderPath, newFileName);
 
             // Dosyayı sunucuya kaydetme
@@ -75,7 +75,7 @@ namespace Barber.Controllers
             }
 
             // Resmin URL'sini oluşturma
-            var fileUrl = Path.Combine("/EmployeePictures", newFileName);
+            var fileUrl = Path.Combine("\\Pictures\\EmployeePictures", newFileName);
 
             // Yeni çalışan oluşturma
             var newEmployee = new Employees
@@ -100,8 +100,8 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpPut("update-employees/{id}")]
-        public IActionResult UpdateEmployee(int id, [FromBody] Employees employeeData)
+        [HttpPut("Update-Employees/{id}")]
+        public IActionResult UpdateEmployee(int id, [FromForm] Employees employeeData)
         {
             var existingEmployee = _context.Employees.Find(id);
             if (existingEmployee == null)
@@ -122,7 +122,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpDelete("delete-employees/{id}")]
+        [HttpDelete("Delete-Employees/{id}")]
         public IActionResult DeleteEmployee(int id)
         {
             var existingEmployee = _context.Employees.Find(id);

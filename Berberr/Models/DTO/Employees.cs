@@ -11,6 +11,5 @@ namespace Barber.Models.DTO
         public string Name { get; set; }
         public string LastName { get; set; }
         public string EmployeeUrl { get; set; }
-
     }
 }

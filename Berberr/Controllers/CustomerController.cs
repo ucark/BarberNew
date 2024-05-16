@@ -9,10 +9,12 @@ using System.Text;
 using System.Security.Claims;
 using Barber.Models.Request;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Barber.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("API/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -27,7 +29,7 @@ namespace Barber.Controllers
             _jwtSettings = jwtSettings.Value;
         }
 
-        [HttpGet("get-customers")]
+        [HttpGet("Get-Customers")]
         public IActionResult GetCustomers()
         {
             try
@@ -41,7 +43,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpGet("get-customer/{id}")]
+        [HttpGet("Get-Customer/{id}")]
         public IActionResult GetCustomerById(int id)
         {
             try
@@ -54,38 +56,9 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-        
-        [HttpPost("create-customer")]
-        public IActionResult CreateCustomer([FromBody] Customers customerData)
-        {
-            var newCustomer = new Customers
-            {
-                Name = customerData.Name,
-                LastName = customerData.LastName,
-                Age = customerData.Age,
-                Gender = customerData.Gender,
-                UserName = customerData.UserName,
-                Mail = customerData.Mail,
-                Password = customerData.Password,
-                Phone = customerData.Phone,
-                City = customerData.City,
-                District = customerData.District,
-                Street = customerData.Street
-            };
-            try
-            {
-                _context.Customers.Add(newCustomer);
-                _context.SaveChanges();
-                return Ok(newCustomer);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error!: " + ex.Message);
-            }
-        }
-        
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
+
+        [HttpPost("Login")]
+        public IActionResult Login([FromForm] Barber.Models.Request.LoginRequest loginData)
         {
             try
             {
@@ -111,9 +84,9 @@ namespace Barber.Controllers
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-
+        /*
         [HttpPost("token")]
-        public IActionResult GenerateJwtToken([FromBody] TokenRequest tokenRequest)
+        public IActionResult GenerateJwtToken([FromForm] TokenRequest tokenRequest)
         {
             try
             {
@@ -126,8 +99,8 @@ namespace Barber.Controllers
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-
-        [HttpPost("create-customers")]
+        */
+        [HttpPost("Create-Customers")]
         public IActionResult CreateCustomer([FromForm] CustomerCreate customerData)
         {
             // Veri doğrulaması
@@ -142,7 +115,7 @@ namespace Barber.Controllers
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
             // Dosya yolu
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomerPictures");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "CustomerPictures");
             var filePath = Path.Combine(folderPath, newFileName);
 
             // Dosyayı sunucuya kaydetme
@@ -152,8 +125,7 @@ namespace Barber.Controllers
             }
 
             // Resmin URL'sini oluşturma
-            var fileUrl = Path.Combine("/CustomerPictures", newFileName);
-
+            var fileUrl = Path.Combine("\\Pictures\\CustomerPictures", newFileName);
             // Yeni çalışan oluşturma
             var newCustomer = new Customers
             {
@@ -185,8 +157,8 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpPut("update-customer/{id}")]
-        public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
+        [HttpPut("Update-Customer/{id}")]
+        public IActionResult UpdateCustomer(int id, [FromForm] Customers customerData)
         {
             var existingCustomer = _context.Customers.Find(id);
             if (existingCustomer == null)
@@ -217,7 +189,7 @@ namespace Barber.Controllers
             }
         }
 
-        [HttpDelete("delete-customer/{id}")]
+        [HttpDelete("Delete-Customer/{id}")]
         public IActionResult DeleteCustomer(int id)
         {
             var existingCustomer = _context.Customers.Find(id);

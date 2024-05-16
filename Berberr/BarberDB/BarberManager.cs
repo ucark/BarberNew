@@ -1,4 +1,5 @@
 ﻿using Barber.Models.DTO;
+using Barber.Models;
 
 namespace Barber.BarberDB
 {
@@ -11,9 +12,9 @@ namespace Barber.BarberDB
             _context = context;
         }
 
-        public void AddBarber(string name, string lastName ,string userName, string workPlaceName, string mail, string password, 
-            string phone, string city, string district, string street, 
-            string BuildingNo, string DoorNumber, string TaxNo, string barberUrl)
+        public void AddBarber(string name, string lastName, string userName, string workPlaceName, string mail, string password,
+            string phone, string city, string district, string street,
+            string buildingNo, string doorNumber, string taxNo, string barberUrl)
         {
             var newBarber = new Barbers
             {
@@ -27,9 +28,9 @@ namespace Barber.BarberDB
                 City = city,
                 District = district,
                 Street = street,
-                BuildingNo = BuildingNo,
-                DoorNumber = DoorNumber,
-                TaxNo = TaxNo,
+                BuildingNo = buildingNo,
+                DoorNumber = doorNumber,
+                TaxNo = taxNo,
                 BarberUrl = barberUrl
             };
             _context.Barbers.Add(newBarber);

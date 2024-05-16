@@ -1,20 +1,23 @@
 ﻿using Barber.Models.DTO;
+using Barber;
 
-namespace Barber.BarberDB
+public class LogInManager
 {
-    public class LogInManager(BarberDbContext context)
-    {
-        private readonly BarberDbContext _context = context;
+    private readonly BarberDbContext _context;
 
-        public void AddLogin(string username, string password)
+    public LogInManager(BarberDbContext context)
+    {
+        _context = context;
+    }
+
+    public void AddLogin(string username, string password)
+    {
+        var newLogin = new Login
         {
-            var newLogin = new Login
-            {
-                Username = username,
-                Password = password
-            };
-            _context.Login.Add(newLogin);
-            _context.SaveChanges();
-        }
+            Username = username,
+            Password = password
+        };
+        _context.Login.Add(newLogin);
+        _context.SaveChanges();
     }
 }

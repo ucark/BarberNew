@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uKrd3LJl4/N2DYaPq8GhwLZI7vBagpyCzdxiqUBus4hrmCr29LEByiYzGOh7sGvFifTZjNihGBGyb+4e41F+3A==",
+  "dgSpecHash": "szBkCxaBf/0FiYng4+n3V3slnZ0OSBX6Wyl98FjVl9rPeR5/J2wmCKiiFgWRqQA8xNKgUx8eFKeIQYDUM81moA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\BarberNew\\Berberr\\Barber.csproj",
+  "projectFilePath": "C:\\Users\\ucark\\source\\repos\\BarberNew\\Berberr\\Barber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ucark\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\ucark\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
