@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0XjVmMQZPw7oOZK2/A+o1kKGWw4U8qKAP96CniMp0Is=",
+  "Hash": "s00gcOPS9omi1ffPeqe9lgVIzKc13A8GCg5D/WnVyys=",
   "Source": "Barber",
   "BasePath": "_content/Barber",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Barber\\wwwroot",
       "Source": "Barber",
-      "ContentRoot": "C:\\Users\\ucark\\source\\repos\\BarberNew\\Berberr\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\wwwroot\\",
       "BasePath": "_content/Barber",
       "Pattern": "**"
     }

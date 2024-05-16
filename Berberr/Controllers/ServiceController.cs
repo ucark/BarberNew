@@ -27,7 +27,8 @@ namespace Barber.Controllers
             {
                 Name = servicesRequest.Name,
                 BarberId = servicesRequest.BarberId,
-                CategoryId = servicesRequest.CategoryId
+                CategoryId = servicesRequest.CategoryId,
+                Price = servicesRequest.Price,
             };
 
             try
@@ -82,6 +83,7 @@ namespace Barber.Controllers
             existingService.Name = serviceRequest.Name;
             existingService.BarberId = serviceRequest.BarberId;
             existingService.CategoryId = serviceRequest.CategoryId;
+            existingService.Price = serviceRequest.Price;
 
             try
             {

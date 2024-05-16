@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Barber.csproj": {}
+    "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Barber.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Barber.csproj": {
+    "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Barber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Barber.csproj",
+        "projectUniqueName": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Barber.csproj",
         "projectName": "Barber",
-        "projectPath": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Barber.csproj",
+        "projectPath": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Barber.csproj",
         "packagesPath": "C:\\Users\\ucark\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\obj\\",
+        "outputPath": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ucark\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,18 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ucark\\Desktop\\BarberNew\\",
+  "WorkspaceRootPath": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barbernew\\berberr\\models\\dto\\appointments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\dto\\appointments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\models\\dto\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\dto\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barbernew\\berberr\\models\\request\\appointmentcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\request\\appointmentcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barbernew\\berberr\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\models\\request\\servicerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\request\\servicerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 495,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,40 +34,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Appointments.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Models\\DTO\\Appointments.cs",
-              "RelativeDocumentMoniker": "Berberr\\Models\\DTO\\Appointments.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Models\\DTO\\Appointments.cs",
-              "RelativeToolTip": "Berberr\\Models\\DTO\\Appointments.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAqAAAA",
+              "DocumentIndex": 3,
+              "Title": "BarberDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\BarberDbContext.cs",
+              "RelativeDocumentMoniker": "Berberr\\BarberDbContext.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\BarberDbContext.cs",
+              "RelativeToolTip": "Berberr\\BarberDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T06:14:49.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AppointmentCreate.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Models\\Request\\AppointmentCreate.cs",
-              "RelativeDocumentMoniker": "Berberr\\Models\\Request\\AppointmentCreate.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Models\\Request\\AppointmentCreate.cs",
-              "RelativeToolTip": "Berberr\\Models\\Request\\AppointmentCreate.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T06:15:10.985Z"
+              "WhenOpened": "2024-05-16T11:27:42.888Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "AppointmentController.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Controllers\\AppointmentController.cs",
-              "RelativeDocumentMoniker": "Berberr\\Controllers\\AppointmentController.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\BarberNew\\Berberr\\Controllers\\AppointmentController.cs",
-              "RelativeToolTip": "Berberr\\Controllers\\AppointmentController.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAgwHcAAAAAAAAA",
+              "Title": "ServiceRequest.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\Request\\ServiceRequest.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\Request\\ServiceRequest.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\Request\\ServiceRequest.cs",
+              "RelativeToolTip": "Berberr\\Models\\Request\\ServiceRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T14:01:15.341Z"
+              "WhenOpened": "2024-05-16T11:24:05.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\ServiceController.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\ServiceController.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAWwFUAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T11:12:31.708Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Services.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\DTO\\Services.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\DTO\\Services.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\DTO\\Services.cs",
+              "RelativeToolTip": "Berberr\\Models\\DTO\\Services.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-16T11:11:46.411Z",
+              "EditorCaption": ""
             }
           ]
         }
