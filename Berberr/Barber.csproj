@@ -7,10 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Remove="Controllers\Pictures\**" />
     <Content Remove="Controllers\Pictures\**" />
     <EmbeddedResource Remove="Controllers\Pictures\**" />
     <None Remove="Controllers\Pictures\**" />
+=======
+    <Compile Remove="BarberPictures\**" />
+    <Compile Remove="CustomerPictures\**" />
+    <Compile Remove="EmployeePictures\**" />
+    <Compile Remove="wwwroot\EmployeePicture\**" />
+    <Content Remove="BarberPictures\**" />
+    <Content Remove="CustomerPictures\**" />
+    <Content Remove="EmployeePictures\**" />
+    <Content Remove="wwwroot\EmployeePicture\**" />
+    <EmbeddedResource Remove="BarberPictures\**" />
+    <EmbeddedResource Remove="CustomerPictures\**" />
+    <EmbeddedResource Remove="EmployeePictures\**" />
+    <EmbeddedResource Remove="wwwroot\EmployeePicture\**" />
+    <None Remove="BarberPictures\**" />
+    <None Remove="CustomerPictures\**" />
+    <None Remove="EmployeePictures\**" />
+    <None Remove="wwwroot\EmployeePicture\**" />
+>>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +43,13 @@
 
   <ItemGroup>
     <Folder Include="Pictures\BarberPictures\" />
+<<<<<<< HEAD
     <Folder Include="Pictures\CustomerPictures\" />
     <Folder Include="Pictures\EmployeePictures\" />
+=======
+    <Folder Include="Pictures\EmployeePictures\" />
+    <Folder Include="Pictures\CustomerPictures\" />
+>>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
