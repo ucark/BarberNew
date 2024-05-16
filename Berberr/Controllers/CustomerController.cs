@@ -1,21 +1,16 @@
 ﻿using Barber.Models.DTO;
-using Barber.Models.Request;
-using Barber.Models.Response;
 using Barber.Models.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Security.Claims;
+using Barber.Models.Request;
 using System.Linq;
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
 
-=======
-using System.Security.Claims;
-using System.Text;
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
 
 namespace Barber.Controllers
 {
@@ -62,42 +57,8 @@ namespace Barber.Controllers
             }
         }
 
-<<<<<<< HEAD
         [HttpPost("Login")]
         public IActionResult Login([FromForm] Barber.Models.Request.LoginRequest loginData)
-=======
-        [HttpPost("create-customer")]
-        public IActionResult CreateCustomer([FromBody] Customers customerData)
-        {
-            var newCustomer = new Customers
-            {
-                Name = customerData.Name,
-                LastName = customerData.LastName,
-                Age = customerData.Age,
-                Gender = customerData.Gender,
-                UserName = customerData.UserName,
-                Mail = customerData.Mail,
-                Password = customerData.Password,
-                Phone = customerData.Phone,
-                City = customerData.City,
-                District = customerData.District,
-                Street = customerData.Street
-            };
-            try
-            {
-                _context.Customers.Add(newCustomer);
-                _context.SaveChanges();
-                return Ok(newCustomer);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error!: " + ex.Message);
-            }
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
         {
             try
             {
@@ -107,16 +68,15 @@ namespace Barber.Controllers
                 {
                     return BadRequest("Kullanıcı adı veya şifresi hatalı.");
                 }
-
+                // Kullanıcı doğrulandıysa JWT token oluştur.
                 var token = _tokenService.GenerateJwtToken(
                     _jwtSettings.Issuer,
                     _jwtSettings.Audience,
                     _jwtSettings.ExpireMinutes,
-                    user.Id.ToString(),
-                    "Customer"
+                    user.Id.ToString(), // Kullanıcı kimlik bilgisi
+                    "Customer" // Kullanıcı rolü
                 );
 
-<<<<<<< HEAD
                 return Ok(new { Token = token, User = user.Id, user.UserName, user.City, user.District, user.Street });
             }
             catch (Exception ex)
@@ -133,20 +93,6 @@ namespace Barber.Controllers
                 // Token oluşturma işlemleri...
                 // Dönüş değeri
                 return Ok("Token oluşturuldu.");
-=======
-                user.RefreshToken = token;
-
-                CustomerResponse customerResponse = new CustomerResponse()
-                {
-                    Token = token,
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    City = user.City,
-                    District = user.District,
-                    Street = user.Street
-                };
-                return Ok(customerResponse);
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
             }
             catch (Exception ex)
             {
@@ -157,35 +103,30 @@ namespace Barber.Controllers
         [HttpPost("Create-Customers")]
         public IActionResult CreateCustomer([FromForm] CustomerCreate customerData)
         {
+            // Veri doğrulaması
             if (customerData == null)
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
+            // Resim yolu doğrulama
             if (customerData.CustomerFile == null || customerData.CustomerFile.Length == 0)
                 return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
 
+            // Yeni dosya adı oluşturma
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
-<<<<<<< HEAD
             // Dosya yolu
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "CustomerPictures");
-=======
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "CustomerPictures");
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
             var filePath = Path.Combine(folderPath, newFileName);
 
+            // Dosyayı sunucuya kaydetme
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 customerData.CustomerFile.CopyTo(stream);
             }
 
-<<<<<<< HEAD
             // Resmin URL'sini oluşturma
             var fileUrl = Path.Combine("\\Pictures\\CustomerPictures", newFileName);
             // Yeni çalışan oluşturma
-=======
-            var fileUrl = Path.Combine("/CustomerPictures", newFileName);
-
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
             var newCustomer = new Customers
             {
                 Name = customerData.Name,
@@ -198,7 +139,7 @@ namespace Barber.Controllers
                 Phone = customerData.Phone,
                 City = customerData.City,
                 District = customerData.District,
-                Street = customerData.Street,
+                Street = customerData.Street, 
                 CustomerUrl = fileUrl
             };
 
@@ -210,6 +151,7 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
+                // Hata durumunda dosyayı silme
                 System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
             }

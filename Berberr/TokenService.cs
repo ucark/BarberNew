@@ -9,9 +9,10 @@ public class TokenService
 {
     private readonly string _secretKey;
 
+    // Yapılandırıcı tanımlayın
     public TokenService(string secretKey)
     {
-        // Gelen secretKey değerini _secretKey değişkenine ata
+        // Gelen secretKey değerini _secretKey değişkenine atayın
         _secretKey = secretKey;
     }
 
@@ -32,12 +33,12 @@ public class TokenService
 
         // Kullanıcı kimlik bilgilerini içeren JWT claim'leri oluştur
         var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.NameIdentifier, userId),
-            new Claim("UserRole", userRole), // Kullanıcı rolü ekle
-            new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
-            new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
-        };
+    {
+        new Claim(ClaimTypes.NameIdentifier, userId),
+        new Claim("UserRole", userRole), // Kullanıcı rolü ekle
+        new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
+        new Claim(JwtRegisteredClaimNames.UniqueName, "dvghhfhf"),
+    };
 
         // JWT token oluştur
         var token = new JwtSecurityToken(
@@ -47,7 +48,6 @@ public class TokenService
             expires: DateTime.UtcNow.AddMinutes(expireMinutes),
             signingCredentials: credentials
         );
-
         // JWT token'ı string olarak döndür
         return new JwtSecurityTokenHandler().WriteToken(token);
     }

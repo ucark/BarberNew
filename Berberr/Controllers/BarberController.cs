@@ -54,50 +54,8 @@ namespace Barber.Controllers
             }
         }
 
-<<<<<<< HEAD
         [HttpPost("Login")]
         public IActionResult Login([FromForm] Barber.Models.Request.LoginRequest loginData)
-=======
-        [HttpPost("create-barber")]
-        public IActionResult CreateBarber([FromBody] Barbers barberData)
-        {
-            if (barberData == null)
-            {
-                return BadRequest("Geçersiz veri: BarberCreate verisi boş.");
-            }
-            try
-            {
-                var newBarber = new Barbers
-                {
-                    Name = barberData.Name,
-                    LastName = barberData.LastName,
-                    UserName = barberData.UserName,
-                    WorkPlaceName = barberData.WorkPlaceName,
-                    Mail = barberData.Mail,
-                    Password = barberData.Password,
-                    Phone = barberData.Phone,
-                    City = barberData.City,
-                    District = barberData.District,
-                    Street = barberData.Street,
-                    BuildingNo = barberData.BuildingNo,
-                    DoorNumber = barberData.DoorNumber,
-                    TaxNo = barberData.TaxNo,
-                    BarberUrl = barberData.BarberUrl
-                };
-
-                _context.Barbers.Add(newBarber);
-                _context.SaveChanges();
-                return Ok(newBarber);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Hata: " + ex.Message);
-            }
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
         {
             try
             {
@@ -145,15 +103,9 @@ namespace Barber.Controllers
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-<<<<<<< HEAD
         */
         [HttpPost("Create-Barbers")]
         public IActionResult CreateBarber([FromForm] BarberCreate barberData)
-=======
-
-        [HttpPut("update-barber")]
-        public IActionResult CreateBarber([FromForm] BarberUpdate barberData)
->>>>>>> aa434d440d63176c9f849ea37d72d6a060f2ab08
         {
             if (barberData == null)
                 return BadRequest("Geçersiz veri: Berber verisi boş.");
@@ -173,6 +125,19 @@ namespace Barber.Controllers
 
             var newBarber = new Barbers
             {
+                Name = barberData.Name,
+                LastName = barberData.LastName,
+                UserName = barberData.UserName,
+                WorkPlaceName = barberData.WorkPlaceName,
+                Mail = barberData.Mail,
+                Password = barberData.Password,
+                Phone = barberData.Phone,
+                City = barberData.City,
+                District = barberData.District,
+                Street = barberData.Street,
+                BuildingNo = barberData.BuildingNo,
+                DoorNumber = barberData.DoorNumber,
+                TaxNo = barberData.TaxNo,
                 BarberUrl = fileUrl
             };
 
@@ -211,7 +176,6 @@ namespace Barber.Controllers
             existingBarber.BuildingNo = barberData.BuildingNo;
             existingBarber.DoorNumber = barberData.DoorNumber;
             existingBarber.TaxNo = barberData.TaxNo;
-            existingBarber.BarberUrl = barberData.BarberUrl;
 
             try
             {

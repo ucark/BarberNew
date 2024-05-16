@@ -17,6 +17,6 @@ namespace Barber.Models.Request
         public string BuildingNo { get; set; }
         public string DoorNumber { get; set; }
         public string TaxNo { get; set; }
-   
+        public IFormFile BarberFile { get; set; }
     }
 }

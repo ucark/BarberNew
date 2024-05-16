@@ -20,7 +20,5 @@ namespace Barber.Models.DTO
         public string District { get; set; }
         public string Street { get; set; }
         public string CustomerUrl { get; set; }
-        public string RefreshToken { get; set; }
-
     }
 }
