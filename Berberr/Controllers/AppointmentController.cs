@@ -45,7 +45,7 @@ namespace Barber.Controllers
         }
 
         [HttpPost("Create-Appointment")]
-        public IActionResult CreateAppointment([FromForm] AppointmentCreate appointmentCreate)
+        public IActionResult CreateAppointment([FromBody] AppointmentCreate appointmentCreate)
         {
             if (appointmentCreate == null)
             {
@@ -71,7 +71,7 @@ namespace Barber.Controllers
 
         }
         [HttpPut("Update-Appointment")]
-        IActionResult UpdateAppointment (int id, [FromForm] Appointments appointmentsUpdate)
+        IActionResult UpdateAppointment (int id, [FromBody] Appointments appointmentsUpdate)
         {
             var existingAppointment = _context.Appointments.Find(id);
             if (existingAppointment == null)

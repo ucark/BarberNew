@@ -101,7 +101,7 @@ namespace Barber.Controllers
         }
 
         [HttpPut("Update-Employees/{id}")]
-        public IActionResult UpdateEmployee(int id, [FromForm] Employees employeeData)
+        public IActionResult UpdateEmployee(int id, [FromBody] Employees employeeData)
         {
             var existingEmployee = _context.Employees.Find(id);
             if (existingEmployee == null)

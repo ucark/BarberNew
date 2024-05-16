@@ -16,7 +16,7 @@ namespace Barber.Controllers
             _context = context;
         }
         [HttpPost("Create-Services")]
-        public IActionResult CreateService([FromForm] ServiceRequest servicesRequest)
+        public IActionResult CreateService([FromBody] ServiceRequest servicesRequest)
         {
             if (servicesRequest == null)
             {
@@ -74,7 +74,7 @@ namespace Barber.Controllers
             }
         }
         [HttpPut("Update-Service/{id}")]
-        public IActionResult UpdateService(int id, [FromForm] ServiceRequest serviceRequest)
+        public IActionResult UpdateService(int id, [FromBody] ServiceRequest serviceRequest)
         {
             var existingService = _context.Services.Find(id);
             if (existingService == null)

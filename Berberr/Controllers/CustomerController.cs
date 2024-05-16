@@ -58,7 +58,7 @@ namespace Barber.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login([FromForm] Barber.Models.Request.LoginRequest loginData)
+        public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
         {
             try
             {
@@ -158,7 +158,7 @@ namespace Barber.Controllers
         }
 
         [HttpPut("Update-Customer/{id}")]
-        public IActionResult UpdateCustomer(int id, [FromForm] Customers customerData)
+        public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
         {
             var existingCustomer = _context.Customers.Find(id);
             if (existingCustomer == null)
