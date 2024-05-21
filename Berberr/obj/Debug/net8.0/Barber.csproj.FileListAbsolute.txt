@@ -398,3 +398,6 @@ C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\obj\Debug\net8.0\refint\Barber.d
 C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\obj\Debug\net8.0\Barber.pdb
 C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\obj\Debug\net8.0\Barber.genruntimeconfig.cache
 C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\obj\Debug\net8.0\ref\Barber.dll
+C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\ucark\Desktop\Barber\BarberNew\Berberr\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

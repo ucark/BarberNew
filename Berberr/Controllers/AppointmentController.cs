@@ -45,7 +45,7 @@ namespace Barber.Controllers
         }
 
         [HttpPost("Create-Appointment")]
-        public IActionResult CreateAppointment([FromBody] AppointmentCreate appointmentCreate)
+        public IActionResult CreateAppointment([FromForm] AppointmentCreate appointmentCreate)
         {
             if (appointmentCreate == null)
             {
@@ -114,6 +114,5 @@ namespace Barber.Controllers
                 }
             }
         }
-
     }
 }

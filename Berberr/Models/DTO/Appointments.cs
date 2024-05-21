@@ -20,6 +20,5 @@ namespace Barber.Models.DTO
         public Customers Customers { get; set; }
         public int ServiceID { get; set; }
         public Services Services { get; set; }
-        public string State { get; set; }
     }
 }

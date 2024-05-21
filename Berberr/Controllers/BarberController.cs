@@ -54,6 +54,37 @@ namespace Barber.Controllers
             }
         }
 
+        [HttpGet("Get-Barber-With-Employees/{id}")]
+        public IActionResult GetBarberWithEmployees(int id)
+        {
+            try
+            {
+                var barber = _context.Barbers.Find(id);
+                if (barber == null)
+                    return NotFound("Belirtilen kimlik numarasına sahip berber bulunamadı.");
+
+                var employees = _context.Employees.Where(e => e.BarberID == id).Select(e => new
+                {
+                    e.Id,
+                    e.Name,
+                    e.LastName,
+                    e.EmployeeUrl
+                }).ToList();
+
+                var result = new
+                {
+                    Barber = barber,
+                    Employees = employees
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+
         [HttpPost("Login")]
         public IActionResult Login([FromBody] Barber.Models.Request.LoginRequest loginData)
         {
@@ -73,7 +104,7 @@ namespace Barber.Controllers
                     user.Id.ToString(), //kullanıcı kimlik bilgisi
                     "Barber" //Kullanıcı rolü
                     );
-                return Ok(new 
+                return Ok(new
                 {
                     Token = token,
                     User = user.Id,
@@ -115,7 +146,7 @@ namespace Barber.Controllers
 
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
 
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "BarberPictures");
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "BarberPictures");
             var filePath = Path.Combine(folderPath, newFileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -152,17 +183,18 @@ namespace Barber.Controllers
                 System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + "Inner Exception: ");
             }
-            
+
         }
 
         [HttpPut("Update-Barber/{id}")]
-        public IActionResult UpdateBarber(int id, [FromBody] Barbers barberData)
+        public IActionResult UpdateBarber(int id, [FromForm] Barbers barberData)
         {
             var existingBarber = _context.Barbers.Find(id);
             if (existingBarber == null)
             {
                 return NotFound("Belirtilen kimlik numarasına sahip bir berber bulunamadı.");
             }
+
             existingBarber.Name = barberData.Name;
             existingBarber.LastName = barberData.LastName;
             existingBarber.UserName = barberData.UserName;

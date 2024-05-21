@@ -114,6 +114,5 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
-
     }
 }
