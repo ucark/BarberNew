@@ -73,6 +73,38 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+
+        [HttpGet("Get-Barber-With-Services/{id}")]
+        public IActionResult GetBarberWithServices(int id)
+        {
+            try
+            {
+                var barber = _context.Barbers.Find(id);
+                if (barber == null)
+                    return NotFound("Belirtilen kimlik numarasına sahip berber bulunamadı.");
+
+                var services = _context.Services.Where(e => e.BarberId == id).Select(e => new
+                {
+                    e.Name,
+                    e.BarberId,
+                    e.CategoryId,
+                    e.Price
+                }).ToList();
+
+                var result = new
+                {
+                    Barber = barber,
+                    Services = services
+                };
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+
         [HttpPut("Update-Service/{id}")]
         public IActionResult UpdateService(int id, [FromBody] ServiceRequest serviceRequest)
         {

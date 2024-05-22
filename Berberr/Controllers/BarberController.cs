@@ -136,23 +136,10 @@ namespace Barber.Controllers
         }
         */
         [HttpPost("Create-Barbers")]
-        public IActionResult CreateBarber([FromForm] BarberCreate barberData)
+        public IActionResult CreateBarber([FromBody] BarberCreate barberData)
         {
             if (barberData == null)
                 return BadRequest("Geçersiz veri: Berber verisi boş.");
-
-            if (barberData.BarberFile == null || barberData.BarberFile.Length == 0)
-                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
-
-            var newFileName = Guid.NewGuid().ToString() + ".jpg";
-
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "BarberPictures");
-            var filePath = Path.Combine(folderPath, newFileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                barberData.BarberFile.CopyTo(stream);
-            }
-            var fileUrl = Path.Combine("\\Pictures\\BarberPictures", newFileName);
 
             var newBarber = new Barbers
             {
@@ -168,8 +155,7 @@ namespace Barber.Controllers
                 Street = barberData.Street,
                 BuildingNo = barberData.BuildingNo,
                 DoorNumber = barberData.DoorNumber,
-                TaxNo = barberData.TaxNo,
-                BarberUrl = fileUrl
+                TaxNo = barberData.TaxNo
             };
 
             try
@@ -180,7 +166,6 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
-                System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + "Inner Exception: ");
             }
 

@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\barbercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\barber\\barbernew\\berberr\\models\\dto\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\models\\dto\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 495,
+          "DockedWidth": 728,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -27,27 +31,46 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmployeeController.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\EmployeeController.cs",
-              "RelativeDocumentMoniker": "Berberr\\Controllers\\EmployeeController.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\EmployeeController.cs",
-              "RelativeToolTip": "Berberr\\Controllers\\EmployeeController.cs",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAuwHUAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T13:13:47.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "BarberController.cs",
               "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
               "RelativeDocumentMoniker": "Berberr\\Controllers\\BarberController.cs",
               "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\BarberController.cs",
               "RelativeToolTip": "Berberr\\Controllers\\BarberController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAwwEIAAAARAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T13:13:40.31Z",
+              "WhenOpened": "2024-05-22T12:23:33.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\ServiceController.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\ServiceController.cs",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAkwHYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T12:19:27.841Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 413,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Services.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\DTO\\Services.cs",
+              "RelativeDocumentMoniker": "Berberr\\Models\\DTO\\Services.cs",
+              "ToolTip": "C:\\Users\\ucark\\Desktop\\Barber\\BarberNew\\Berberr\\Models\\DTO\\Services.cs",
+              "RelativeToolTip": "Berberr\\Models\\DTO\\Services.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T12:22:27.619Z",
               "EditorCaption": ""
             }
           ]

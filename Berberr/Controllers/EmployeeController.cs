@@ -1,10 +1,10 @@
 ﻿using Barber.Models.DTO;
 using Barber.Models.Request;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Linq;
+using Barber.Models.Update;
 
 namespace Barber.Controllers
 {
@@ -57,33 +57,12 @@ namespace Barber.Controllers
             if (employeeData == null)
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
-            // Resim yolu doğrulama
-            if (employeeData.EmployeeFile == null || employeeData.EmployeeFile.Length == 0)
-                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
-
-            // Yeni dosya adı oluşturma
-            var newFileName = Guid.NewGuid().ToString() + ".jpg";
-
-            // Dosya yolu
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "EmployeePictures");
-            var filePath = Path.Combine(folderPath, newFileName);
-
-            // Dosyayı sunucuya kaydetme
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                employeeData.EmployeeFile.CopyTo(stream);
-            }
-
-            // Resmin URL'sini oluşturma
-            var fileUrl = Path.Combine("\\Pictures\\EmployeePictures", newFileName);
-
             // Yeni çalışan oluşturma
             var newEmployee = new Employees
             {
                 BarberID = employeeData.BarberID,
                 Name = employeeData.Name,
-                LastName = employeeData.LastName,
-                EmployeeUrl = fileUrl // Resmin URL'sini kaydetme
+                LastName = employeeData.LastName
             };
 
             try
@@ -94,14 +73,12 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
-                // Hata durumunda dosyayı silme
-                System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
             }
         }
 
         [HttpPut("Update-Employees/{id}")]
-        public IActionResult UpdateEmployee(int id, [FromBody] Employees employeeData)
+        public IActionResult UpdateEmployee(int id, [FromForm] EmployeeUpdate employeeData)
         {
             var existingEmployee = _context.Employees.Find(id);
             if (existingEmployee == null)
@@ -109,7 +86,29 @@ namespace Barber.Controllers
 
             existingEmployee.Name = employeeData.Name;
             existingEmployee.LastName = employeeData.LastName;
-            existingEmployee.EmployeeUrl = employeeData.EmployeeUrl;
+
+            // Kullanıcı bir dosya göndermişse ve dosya boş değilse
+            if (employeeData.EmployeeFile != null && employeeData.EmployeeFile.Length > 0)
+            {
+                // Yeni dosya adı oluşturma
+                var newFileName = Guid.NewGuid().ToString() + ".jpg";
+
+                // Dosya yolu
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "EmployeePictures");
+                var filePath = Path.Combine(folderPath, newFileName);
+
+                // Dosyayı sunucuya kaydetme
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    employeeData.EmployeeFile.CopyTo(stream);
+                }
+
+                // Resmin URL'sini oluşturma
+                var fileUrl = Path.Combine("\\Pictures\\EmployeePictures", newFileName);
+
+                // Resim URL'sini güncelleme
+                existingEmployee.EmployeeUrl = fileUrl;
+            }
 
             try
             {
@@ -121,6 +120,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
+
 
         [HttpDelete("Delete-Employees/{id}")]
         public IActionResult DeleteEmployee(int id)

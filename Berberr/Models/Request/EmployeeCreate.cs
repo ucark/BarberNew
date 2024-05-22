@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Barber.Models.Request
+﻿namespace Barber.Models.Request
 {
     public class EmployeeCreate
     {
