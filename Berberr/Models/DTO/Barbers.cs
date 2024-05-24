@@ -20,6 +20,6 @@ namespace Barber.Models.DTO
         public string BuildingNo { get; set; }
         public string DoorNumber { get; set; }
         public string TaxNo { get; set; }
-        //public string BarberUrl { get; set; }
+        public string BarberUrl { get; set; }
     }
 }

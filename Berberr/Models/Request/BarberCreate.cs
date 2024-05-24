@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Barber.Models.Request;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace Barber.Models.Request
 {
@@ -17,6 +20,6 @@ namespace Barber.Models.Request
         public string BuildingNo { get; set; }
         public string DoorNumber { get; set; }
         public string TaxNo { get; set; }
-        public IFormFile BarberFile { get; set; }
+ 
     }
 }

@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Barber.Models.Request;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using Barber.Models.Update;
 
 
 namespace Barber.Controllers
@@ -107,25 +108,6 @@ namespace Barber.Controllers
             if (customerData == null)
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
-            // Resim yolu doğrulama
-            if (customerData.CustomerFile == null || customerData.CustomerFile.Length == 0)
-                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
-
-            // Yeni dosya adı oluşturma
-            var newFileName = Guid.NewGuid().ToString() + ".jpg";
-
-            // Dosya yolu
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(),"Pictures", "CustomerPictures");
-            var filePath = Path.Combine(folderPath, newFileName);
-
-            // Dosyayı sunucuya kaydetme
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                customerData.CustomerFile.CopyTo(stream);
-            }
-
-            // Resmin URL'sini oluşturma
-            var fileUrl = Path.Combine("\\Pictures\\CustomerPictures", newFileName);
             // Yeni çalışan oluşturma
             var newCustomer = new Customers
             {
@@ -139,8 +121,8 @@ namespace Barber.Controllers
                 Phone = customerData.Phone,
                 City = customerData.City,
                 District = customerData.District,
-                Street = customerData.Street, 
-                CustomerUrl = fileUrl
+                Street = customerData.Street,
+                CustomerUrl = ""
             };
 
             try
@@ -151,32 +133,52 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
-                // Hata durumunda dosyayı silme
-                System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
             }
         }
 
-        [HttpPut("Update-Customer/{id}")]
-        public IActionResult UpdateCustomer(int id, [FromBody] Customers customerData)
+        [HttpPut("Update-Customer")]
+        public IActionResult UpdateCustomer([FromForm] CustomerUpdate request)
         {
-            var existingCustomer = _context.Customers.Find(id);
+            var existingCustomer = _context.Customers.Find(request.Id);
             if (existingCustomer == null)
             {
-                return NotFound("Belirtilen kimlik numarasına sahip bir müşteri bulunamadı.");
+                return NotFound("Belirtilen kimlik numarasına sahip bir berber bulunamadı.");
             }
-            existingCustomer.Name = customerData.Name;
-            existingCustomer.LastName = customerData.LastName;
-            existingCustomer.Age = customerData.Age;
-            existingCustomer.Gender = customerData.Gender;
-            existingCustomer.UserName = customerData.UserName;
-            existingCustomer.Mail = customerData.Mail;
-            existingCustomer.Password = customerData.Password;
-            existingCustomer.Phone = customerData.Phone;
-            existingCustomer.City = customerData.City;
-            existingCustomer.District = customerData.District;
-            existingCustomer.Street = customerData.Street;
-            existingCustomer.CustomerUrl = customerData.CustomerUrl;
+
+            // Resim yolu doğrulama
+            if (request.CustomerFile == null || request.CustomerFile.Length == 0)
+                return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
+
+            // Yeni dosya adı oluşturma
+            var newFileName = Guid.NewGuid().ToString() + ".jpg";
+
+            // Dosya yolu
+            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "CustomerPictures");
+            var filePath = Path.Combine(folderPath, newFileName);
+
+            // Resmin URL'sini oluşturma
+            var fileUrl = Path.Combine("\\Pictures\\CustomerPictures", newFileName);
+
+            // Dosyayı sunucuya kaydetme
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                request.CustomerFile.CopyTo(stream);
+            }
+
+            existingCustomer.Name = request.Name;
+            existingCustomer.LastName = request.LastName;
+            existingCustomer.UserName = request.UserName;
+            existingCustomer.Age = request.Age;
+            existingCustomer.Gender = request.Gender;
+            existingCustomer.Mail = request.Mail;
+            existingCustomer.Password = request.Password;
+            existingCustomer.Phone = request.Phone;
+            existingCustomer.City = request.City;
+            existingCustomer.District = request.District;
+            existingCustomer.Street = request.Street;
+            existingCustomer.CustomerUrl = fileUrl;
+            //existingCustomer.BarberUrl = fileUrl != null ? "" : filePath;
 
             try
             {
@@ -185,6 +187,8 @@ namespace Barber.Controllers
             }
             catch (Exception ex)
             {
+                // Hata durumunda dosyayı silme
+                System.IO.File.Delete(filePath);
                 return StatusCode(500, "Hata: " + ex.Message);
             }
         }
