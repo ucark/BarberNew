@@ -15,6 +15,7 @@ namespace Barber.Controllers
         {
             _context = context;
         }
+
         [HttpPost("Create-Services")]
         public IActionResult CreateService([FromBody] ServiceRequest servicesRequest)
         {

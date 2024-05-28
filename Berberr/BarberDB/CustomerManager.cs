@@ -14,7 +14,7 @@ namespace Barber.BarberDB
 
         public void AddCustomer(string name, string lastName, string age, bool gender, 
             string userName, string mail, string password, 
-            string phone, string city, string district, string street, string customerUrl)
+            string phone, string city, string district, string street)
         {
             var newCustomer = new Customers
             {
@@ -28,8 +28,7 @@ namespace Barber.BarberDB
                 Phone = phone,
                 City = city,
                 District = district,
-                Street = street,
-                CustomerUrl = customerUrl
+                Street = street
             };
             _context.Customers.Add(newCustomer);
             _context.SaveChanges();

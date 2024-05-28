@@ -12,7 +12,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Barber.Models.Update;
 
-
 namespace Barber.Controllers
 {
     [Route("API/[controller]")]
@@ -85,22 +84,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Sunucu hatası: " + ex.Message);
             }
         }
-        /*
-        [HttpPost("token")]
-        public IActionResult GenerateJwtToken([FromForm] TokenRequest tokenRequest)
-        {
-            try
-            {
-                // Token oluşturma işlemleri...
-                // Dönüş değeri
-                return Ok("Token oluşturuldu.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Sunucu hatası: " + ex.Message);
-            }
-        }
-        */
+
         [HttpPost("Create-Customers")]
         public IActionResult CreateCustomer([FromForm] CustomerCreate customerData)
         {
@@ -141,14 +125,20 @@ namespace Barber.Controllers
         public IActionResult UpdateCustomer([FromForm] CustomerUpdate request)
         {
             var existingCustomer = _context.Customers.Find(request.Id);
+            if (request == null)
+            {
+                return BadRequest("Geçersiz veri: Müşteri verisi boş.");
+            }
+
             if (existingCustomer == null)
             {
-                return NotFound("Belirtilen kimlik numarasına sahip bir berber bulunamadı.");
+                return NotFound("Belirtilen kimlik numarasına sahip bir müşteri bulunamadı.");
             }
 
             // Resim yolu doğrulama
             if (request.CustomerFile == null || request.CustomerFile.Length == 0)
                 return BadRequest("Geçersiz veri: Profil resmi yüklenmedi.");
+            
 
             // Yeni dosya adı oluşturma
             var newFileName = Guid.NewGuid().ToString() + ".jpg";
@@ -158,14 +148,28 @@ namespace Barber.Controllers
             var filePath = Path.Combine(folderPath, newFileName);
 
             // Resmin URL'sini oluşturma
-            var fileUrl = Path.Combine("\\Pictures\\CustomerPictures", newFileName);
+            var fileUrl = Path.Combine("Pictures", "CustomerPictures", newFileName);
 
-            // Dosyayı sunucuya kaydetme
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            // Klasörün varlığını kontrol et ve yoksa oluştur
+            if (!Directory.Exists(folderPath))
             {
-                request.CustomerFile.CopyTo(stream);
+                Directory.CreateDirectory(folderPath);
             }
 
+            // Dosyayı sunucuya kaydetme
+            try
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    request.CustomerFile.CopyTo(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Dosya yüklenirken bir hata oluştu: " + ex.Message);
+            }
+
+            // Müşteri bilgilerini güncelleme
             existingCustomer.Name = request.Name;
             existingCustomer.LastName = request.LastName;
             existingCustomer.UserName = request.UserName;
@@ -178,7 +182,6 @@ namespace Barber.Controllers
             existingCustomer.District = request.District;
             existingCustomer.Street = request.Street;
             existingCustomer.CustomerUrl = fileUrl;
-            //existingCustomer.BarberUrl = fileUrl != null ? "" : filePath;
 
             try
             {
@@ -188,8 +191,11 @@ namespace Barber.Controllers
             catch (Exception ex)
             {
                 // Hata durumunda dosyayı silme
-                System.IO.File.Delete(filePath);
-                return StatusCode(500, "Hata: " + ex.Message);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+                return StatusCode(500, "Veritabanı işlemi sırasında bir hata oluştu: " + ex.Message);
             }
         }
 

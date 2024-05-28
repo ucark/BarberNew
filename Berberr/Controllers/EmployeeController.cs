@@ -53,16 +53,34 @@ namespace Barber.Controllers
         [HttpPost("Create-Employees")]
         public IActionResult CreateEmployee([FromForm] EmployeeCreate employeeData)
         {
-            // Veri doğrulaması
             if (employeeData == null)
                 return BadRequest("Geçersiz veri: Çalışan verisi boş.");
 
-            // Yeni çalışan oluşturma
+            string newFileName = null;
+            if (employeeData.EmployeeFile != null && employeeData.EmployeeFile.Length > 0)
+            {
+                newFileName = Guid.NewGuid().ToString() + ".jpg";
+
+                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "EmployeePictures");
+                var filePath = Path.Combine(folderPath, newFileName);
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    employeeData.EmployeeFile.CopyTo(stream);
+                }
+            }
+
             var newEmployee = new Employees
             {
                 BarberID = employeeData.BarberID,
                 Name = employeeData.Name,
-                LastName = employeeData.LastName
+                LastName = employeeData.LastName,
+                EmployeeUrl = newFileName != null ? Path.Combine("\\Pictures\\EmployeePictures", newFileName) : null
             };
 
             try
@@ -76,6 +94,7 @@ namespace Barber.Controllers
                 return StatusCode(500, "Hata: " + ex.Message + " Inner Exception: " + ex.InnerException?.Message);
             }
         }
+
 
         [HttpPut("Update-Employees/{id}")]
         public IActionResult UpdateEmployee(int id, [FromForm] EmployeeUpdate employeeData)
@@ -122,7 +141,7 @@ namespace Barber.Controllers
         }
 
 
-        [HttpDelete("Delete-Employees/{id}")]
+        [HttpDelete("Delete-Employees")]
         public IActionResult DeleteEmployee(int id)
         {
             var existingEmployee = _context.Employees.Find(id);

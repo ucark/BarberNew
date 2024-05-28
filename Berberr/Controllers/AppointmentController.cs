@@ -2,7 +2,7 @@
 using Barber.Models.Request;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+/*
 namespace Barber.Controllers
 {
     [Route("API/[controller]")]
@@ -116,3 +116,4 @@ namespace Barber.Controllers
         }
     }
 }
+*/

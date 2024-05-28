@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 //using Microsoft.AspNetCore.Builder;
 //using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.Extensions.DependencyInjection;
 //using Microsoft.Extensions.Hosting;
@@ -80,7 +82,7 @@ namespace Barber
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseCors("AllowSpecificOrigin");
                 app.UseSwaggerUI(c =>
@@ -90,7 +92,7 @@ namespace Barber
             }
             else
             {
-                app.UseExceptionHandler("/error"); // Hata yönetimi middleware'i
+                //app.UseExceptionHandler("/error"); // Hata yönetimi middleware'i
                 app.UseHsts(); // HTTP Strict Transport Security
                 app.UseHttpsRedirection(); // HTTPS'e yönlendirme
                 app.UseCors("AllowSpecificOrigin"); // Prodüksiyon ortamında CORS tanımlaması
@@ -102,6 +104,12 @@ namespace Barber
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Pictures/BarberPictures")),
+                RequestPath = "/Pictures/BarberPictures"
             });
         }
     }
